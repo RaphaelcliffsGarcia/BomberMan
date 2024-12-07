@@ -1,3 +1,1 @@
 # BomberMan
-
-Teste
