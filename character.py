@@ -13,6 +13,7 @@ class Character(pygame.sprite.Sprite):
 
         #  Character Attributes
         self.alive = True
+        self.speed = 3
 
         #  Character Display
         self.image = None
@@ -26,6 +27,19 @@ class Character(pygame.sprite.Sprite):
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     self.GAME.MAIN.run = False
+
+        keys_pressed = pygame.key.get_pressed()
+        if keys_pressed[pygame.K_d] or keys_pressed[pygame.K_RIGHT]:
+            self.x += self.speed
+        elif keys_pressed[pygame.K_a] or keys_pressed[pygame.K_LEFT]:
+            self.x -= self.speed
+        elif keys_pressed[pygame.K_w] or keys_pressed[pygame.K_UP]:
+            self.y -= self.speed
+        elif keys_pressed[pygame.K_s] or keys_pressed[pygame.K_DOWN]:
+            self.y += self.speed
+
+        #  Update the character rect position
+        self.rect.topleft = (self.x, self.y)
 
 
     def update(self):
