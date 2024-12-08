@@ -28,14 +28,11 @@ class Blocks(pygame.sprite.Sprite):
         self.image = self.image_list[self.image_index]
         self.rect = self.image.get_rect(topleft=(self.x, self.y))
 
-
     def update(self):
         pass
 
-
     def draw(self, window, offset):
         window.blit(self.image, (self.rect.x - offset, self.rect.y))
-
 
     def __repr__(self):
         return "'#'"
@@ -49,7 +46,6 @@ class Hard_Block(Blocks):
 class Soft_Block(Blocks):
     def __init__(self, game, images, group, row_num, col_num, size):
         super().__init__(game, images, group, row_num, col_num, size)
-
 
     def __repr__(self):
         return "'@'"
