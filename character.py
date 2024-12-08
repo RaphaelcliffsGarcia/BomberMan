@@ -3,13 +3,18 @@ import gamesettings as gs
 
 
 class Character(pygame.sprite.Sprite):
-    def __init__(self, game, image_dict):
-        super().__init__()
+    def __init__(self, game, image_dict, group, row_num, col_num, size):
+        super().__init__(group)
         self.GAME = game
 
+        #  Level Matrix Position
+        self.row_num = row_num
+        self.col_num = col_num
+        self.size = size
+
         #  Character position
-        self.x = 0
-        self.y = 0
+        self.x = self.col_num * self.size
+        self.y = (self.row_num * self.size) + gs.Y_OFFSET
 
         #  Character Attributes
         self.alive = True
@@ -25,6 +30,7 @@ class Character(pygame.sprite.Sprite):
         self.image_dict = image_dict
         self.image = self.image_dict[self.action][self.index]
         self.rect = self.image.get_rect(topleft=(self.x, self.y))
+
 
     def input(self):
         for event in pygame.event.get():
@@ -53,6 +59,7 @@ class Character(pygame.sprite.Sprite):
     def draw(self, window):
         window.blit(self.image, self.rect)
         pygame.draw.rect(window, gs.RED, self.rect, 1)
+
 
     def animate(self, action):
         """Switches between images in order to animate movement"""
